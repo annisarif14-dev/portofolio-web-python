@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Kelompok Python</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Kelompok Python</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="logo"><i class="fab fa-python"></i> MyPortofolio<span>.py</span></div>
+    <div class="logo">🐍 MyPortofolio<span>.py</span></div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="portofolio.html" class="active">Portofolio</a></li>
@@ -18,126 +19,184 @@
     </ul>
   </nav>
 
-  <section class="portfolio-section">
-    <h2 class="section-title">Portofolio Sertifikasi Anggota</h2>
+  <main class="main-container">
     
-    <div class="portfolio-container">
-      <ul class="bullet-list portfolio-list">
-        
-        <!-- Anggota 1 -->
-        <li>
-          <div class="list-icon">
-            <img src="Foto Annisa.png" alt="Annisa Rifa Aulia" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Annisa+Rifa&background=306998&color=fff'">
+    <!-- HEADER UTAMA KELOMPOK (Logo Python) -->
+    <section class="team-header-card">
+      <div class="team-header-content">
+        <div class="team-logo-wrapper">
+          <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt="Python Logo">
+        </div>
+        <div class="team-info">
+          <h1>Kelompok Python Development</h1>
+          <p class="team-school">📍 Politeknik Negeri Madiun | Teknologi Informasi</p>
+          <p class="team-desc">Tim IT yang berfokus pada Web Engineering, UI/UX Design, dan System Analysis.</p>
+          <div class="team-stats-badge">
+            <span><i class="fas fa-users"></i> 7 Anggota Tim</span>
+            <span><i class="fas fa-award"></i> 15+ Sertifikasi</span>
           </div>
-          <div class="list-content">
-            <h3>Annisa Rifa Aulia</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
+        </div>
+      </div>
+    </section>
 
-        <!-- Anggota 2 -->
-        <li>
-          <div class="list-icon">
-            <img src="Foto Zahra.jpeg" alt="Az-Zahra Artika Putri" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Az+Zahra&background=306998&color=fff'">
-          </div>
-          <div class="list-content">
-            <h3>Az-Zahra Artika Putri</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <!-- Anggota 3 -->
-        <li>
-          <div class="list-icon">
-             <img src="Foto Anik.png" alt="Anik Isnaeni" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Anik+Isnaeni&background=306998&color=fff'">
-          </div>
-          <div class="list-content">
-            <h3>Anik Isnaeni</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <!-- Anggota 4 -->
-        <li>
-          <div class="list-icon">
-           <img src="Foto Radhia.jpeg" alt="Radhia Ayu" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Radhia+Ayu&background=306998&color=fff'">
-          </div>
-          <div class="list-content">
-            <h3>Radhia Ayu</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <!-- Anggota 5 -->
-        <li>
-          <div class="list-icon">
-            <img src="Foto Syahan.png" alt="Syahan Bakti Ramadika" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Syahan+Bakti&background=306998&color=fff'">
-          </div>
-          <div class="list-content">
-            <h3>Syahan Bakti Ramadika</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <!-- Anggota 6 -->
-        <li>
-          <div class="list-icon">
-            <img src="Foto Vika.png" alt="Vika Aditya Saputra" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Vika+Aditya&background=306998&color=fff'">
-          </div>
-          <div class="list-content">
-            <h3>Vika Aditya Saputra</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-        <!-- Anggota 7 -->
-        <li>
-          <div class="list-icon">
-             <img src="Foto Syauqi.png" alt="Syauqi Nurrochman Prabaswara" class="profile-thumb" onerror="this.src='https://ui-avatars.com/api/?name=Syauqi+Nurrochman&background=306998&color=fff'">
-          </div>
-          <div class="list-content">
-            <h3>Syauqi Nurrochman Prabaswara</h3>
-            <div class="cert-header">
-              <p><strong>Sertifikasi:</strong> <span class="cert-status">Belum Tersedia</span></p>
-              <button class="btn-add-cert" onclick="addCertificate(this)" title="Tambah Sertifikat"><i class="fas fa-plus"></i></button>
-            </div>
-            <a href="#" class="card-link">Detail Tugas <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </li>
-
-      </ul>
+    <!-- JUDUL SECTION -->
+    <div class="section-title-wrapper">
+      <h2><i class="fas fa-id-card"></i> Daftar Portofolio Anggota Tim</h2>
     </div>
-  </section>
+
+    <!-- GRID KARTU ANGGOTA (Portrait Style) -->
+    <div class="member-cards-grid">
+      
+      <!-- 1. Annisa Rifa Aulia -->
+      <div class="profile-card" onclick="openMemberModal('annisa', 'Annisa Rifa Aulia', 'Project Manager', 'img/Annisa.png', 'Mengkoordinasikan pengembangan perangkat lunak dan arsitektur sistem berbasis Python.')">
+        <div class="card-avatar-container">
+          <img src="img/Annisa.png" alt="Annisa" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Annisa+Rifa&background=306998&color=fff&size=400';">
+          <span class="role-badge">Project Manager</span>
+        </div>
+        <div class="card-body">
+          <h3>Annisa Rifa Aulia</h3>
+          <p class="card-caption">"PM & Software Architecture ✨. Mengkoordinasikan pengembangan perangkat lunak dan arsitektur sistem berbasis Python."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Vika Aditya Saputra -->
+      <div class="profile-card" onclick="openMemberModal('vika', 'Vika Aditya Saputra', 'Frontend Developer', 'img/Vika.png', 'Spesialis antarmuka pengguna responsif dan integrasi logika frontend Web & Python.')">
+        <div class="card-avatar-container">
+          <img src="img/Vika.png" alt="Vika" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Vika+Aditya&background=306998&color=fff&size=400';">
+          <span class="role-badge">Frontend Developer</span>
+        </div>
+        <div class="card-body">
+          <h3>Vika Aditya Saputra</h3>
+          <p class="card-caption">"Frontend & Python Basic 🚀. Spesialis antarmuka pengguna responsif dan integrasi logika frontend Web & Python."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Az-Zahra Artika Putri -->
+      <div class="profile-card" onclick="openMemberModal('zahra', 'Az-Zahra Artika Putri', 'UI/UX Designer', 'img/Zahra.jpeg', 'Merancang desain pengalaman pengguna (UX) yang intuitif dan antarmuka visual (UI) yang estetis.')">
+        <div class="card-avatar-container">
+          <img src="img/Zahra.jpeg" alt="Zahra" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Az+Zahra&background=306998&color=fff&size=400';">
+          <span class="role-badge">UI/UX Designer</span>
+        </div>
+        <div class="card-body">
+          <h3>Az-Zahra Artika Putri</h3>
+          <p class="card-caption">"UI/UX Design Enthusiast 🎨. Merancang desain pengalaman pengguna (UX) yang intuitif dan antarmuka visual (UI) yang estetis."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Anik Isnaeni -->
+      <div class="profile-card" onclick="openMemberModal('anik', 'Anik Isnaeni', 'Backend Developer', 'img/Anik.png', 'Pengelolaan basis data, manajemen server, dan pembuatan RESTful API berbasis Python.')">
+        <div class="card-avatar-container">
+          <img src="img/Anik.png" alt="Anik" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Anik+Isnaeni&background=306998&color=fff&size=400';">
+          <span class="role-badge">Backend Developer</span>
+        </div>
+        <div class="card-body">
+          <h3>Anik Isnaeni</h3>
+          <p class="card-caption">"Backend & Database 💻. Pengelolaan basis data, manajemen server, dan pembuatan RESTful API berbasis Python."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Syauqi Nurrochman P. -->
+      <div class="profile-card" onclick="openMemberModal('syauqi', 'Syauqi Nurrochman P.', 'Python Programmer', 'img/Syauqi.png', 'Algoritma pemrograman Python, pemrosesan skrip, dan otomasi logika sistem.')">
+        <div class="card-avatar-container">
+          <img src="img/Syauqi.png" alt="Syauqi" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Syauqi+Prabaswara&background=306998&color=fff&size=400';">
+          <span class="role-badge">Python Programmer</span>
+        </div>
+        <div class="card-body">
+          <h3>Syauqi Nurrochman P.</h3>
+          <p class="card-caption">"Python & Algorithms 📊. Algoritma pemrograman Python, pemrosesan skrip, dan otomasi logika sistem."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Syahan Bakti Ramadika -->
+      <div class="profile-card" onclick="openMemberModal('syahan', 'Syahan Bakti Ramadika', 'Data Analyst', 'img/Syahan.png', 'Analisis data komprehensif, pemrosesan informasi, dan visualisasi data.')">
+        <div class="card-avatar-container">
+          <img src="img/Syahan.png" alt="Syahan" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Syahan+Bakti&background=306998&color=fff&size=400';">
+          <span class="role-badge">Data Analyst</span>
+        </div>
+        <div class="card-body">
+          <h3>Syahan Bakti Ramadika</h3>
+          <p class="card-caption">"Data Analytics & Viz 📈. Analisis data komprehensif, pemrosesan informasi, dan visualisasi data."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Radhia Ayu -->
+      <div class="profile-card" onclick="openMemberModal('radhia', 'Radhia Ayu', 'System Analyst', 'img/Radhia.jpeg', 'Pengujian sistem, analisis kebutuhan bisnis, serta penjaminan kualitas aplikasi (QA).')">
+        <div class="card-avatar-container">
+          <img src="img/Radhia.jpeg" alt="Radhia" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Radhia+Ayu&background=306998&color=fff&size=400';">
+          <span class="role-badge">System Analyst</span>
+        </div>
+        <div class="card-body">
+          <h3>Radhia Ayu</h3>
+          <p class="card-caption">"Systems & Quality Assurance 🔍. Pengujian sistem, analisis kebutuhan bisnis, serta penjaminan kualitas aplikasi (QA)."</p>
+          <div class="card-footer-action">
+            <button class="btn-view-profile"><i class="fas fa-folder-open"></i> Lihat Detail & Sertifikat</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL POPUP DETAIL & UPLOAD SERTIFIKAT -->
+  <div id="certModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModalBtn">&times;</span>
+      
+      <div class="modal-profile-header">
+        <img id="modalMemberImg" src="" alt="Avatar">
+        <div>
+          <h3 id="modalTitle">Nama Anggota</h3>
+          <span id="modalRole" class="modal-role-badge">Role</span>
+          <p id="modalDesc" class="modal-desc">Deskripsi singkat...</p>
+        </div>
+      </div>
+
+      <hr style="margin: 20px 0; border: none; border-top: 1px solid #e2e8f0;">
+
+      <h4><i class="fas fa-award"></i> Daftar Sertifikat & Media</h4>
+      <div class="cert-list" id="memberCertList">
+        <p class="no-cert-text">Belum ada sertifikat yang diunggah untuk anggota ini.</p>
+      </div>
+
+      <div class="upload-section-box">
+        <h4>+ Unggah Sertifikat / Media Baru</h4>
+        <form id="certForm">
+          <div class="form-group">
+            <label for="certTitle">Judul / Keterangan Sertifikat:</label>
+            <input type="text" id="certTitle" placeholder="Misal: Sertifikat Python Fundamental" required>
+          </div>
+          <div class="form-group">
+            <label for="certFile">Upload File Gambar / Media:</label>
+            <input type="file" id="certFile" accept="image/*" required>
+          </div>
+          <button type="submit" class="btn-cert-submit"><i class="fas fa-upload"></i> Simpan & Unggah Sertifikat</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2026 MyPortofolio Python. All Rights Reserved.</p>
   </footer>
 
   <script src="script.js"></script>
-
 </body>
 </html>

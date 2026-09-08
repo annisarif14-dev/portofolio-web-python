@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Kelompok Python</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Kelompok Python</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="logo"><i class="fab fa-python"></i> MyPortofolio<span>.py</span></div>
+    <div class="logo">🐍 MyPortofolio<span>.py</span></div>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="portofolio.html">Portofolio</a></li>
@@ -18,66 +19,38 @@
     </ul>
   </nav>
 
-  <section class="home-section">
-    <div class="hero-content">
-
-      <div class="hero-img">
-        <img src=".png" alt="Foto Profil Annisa" onerror="this.src='https://ui-avatars.com/api/?name=Annisa+Rifa&background=306998&color=fff'">
+  <!-- HERO SECTION -->
+  <main class="main-container">
+    <section class="team-header-card" style="text-align: center; padding: 60px 20px;">
+      <div class="team-logo-wrapper" style="margin: 0 auto 20px auto;">
+        <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt="Python Logo">
       </div>
-      
-      <div class="hero-text">
-        <h3>Halo, Kami dari kelompok</h3>
-        <h1><i class="fab fa-python python-icon"></i> Python</h1>
-        <p class="subtitle">Calon Front-End Developer</p>
-        <ul class="bullet-list">
-          <li><i class="fas fa-sparkles"></i> Mahasiswa dari Program Studi Teknologi Informasi yang memiliki ketertarikan terhadap Dunia Teknologi.</li>
-        </ul>
-        <a href="portofolio.html" class="btn">Lihat Portofolio</a>
+      <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Selamat Datang di Portofolio Kelompok Python</h1>
+      <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 25px auto; opacity: 0.95;">
+        Platform kolaborasi digital Mahasiswa Teknologi Informasi. 
+      </p>
+      <div>
+        <a href="portofolio.html" style="background: #ffffff; color: #306998; padding: 12px 25px; border-radius: 30px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block;">
+          <i class="fas fa-id-card"></i> Lihat Portofolio Anggota
+        </a>
       </div>
+    </section>
 
-      <!-- Animasi Mahasiswa & Mahasiswi TI Koding Laptop -->
-      <div class="hero-illustration">
-        <div class="coder-container">
-          <div class="character male">
-            <div class="hair-m"></div>
-            <div class="head">
-              <div class="eye left"></div>
-              <div class="eye right"></div>
-            </div>
-            <div class="body-m"></div>
-            <div class="arm-m"></div>
-          </div>
-
-          <div class="laptop-wrapper">
-            <div class="screen">
-              <div class="code-line line-1"></div>
-              <div class="code-line line-2"></div>
-              <div class="code-line line-3"></div>
-              <div class="code-line line-4"></div>
-            </div>
-            <div class="keyboard"></div>
-          </div>
-
-          <div class="character female">
-            <div class="hair-f"></div>
-            <div class="head">
-              <div class="eye left"></div>
-              <div class="eye right"></div>
-            </div>
-            <div class="body-f"></div>
-            <div class="arm-f"></div>
-          </div>
-        </div>
-      </div>
-
+    <!-- ABOUT SECTION -->
+    <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-top: 30px;">
+      <h2 style="color: #1e293b; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Tentang Tim Kami</h2>
+      <p style="color: #64748b; line-height: 1.8; margin-bottom: 15px;">
+        Kelompok kami terdiri dari 7 anggota berbakat dengan pembagian peran yang terstruktur mulai dari Project Manager, UI/UX Designer, Frontend & Backend Developer, Data Analyst, hingga System Analyst.
+      </p>
+      <p style="color: #64748b; line-height: 1.8;">
+        Melalui situs web ini, kami mendokumentasikan berbagai proyek, tugas, serta sertifikasi keahlian yang telah dicapai selama masa studi.
+      </p>
     </div>
-  </section>
+  </main>
 
   <footer>
     <p>&copy; 2026 MyPortofolio Python. All Rights Reserved.</p>
   </footer>
-
-  <script src="script.js"></script>
 
 </body>
 </html>
