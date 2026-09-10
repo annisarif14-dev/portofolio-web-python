@@ -1,4 +1,5 @@
-let memberCertificates = {
+// 1. Ambil data dari localStorage saat pertama kali dimuat, jika belum ada buat objek kosong
+let memberCertificates = JSON.parse(localStorage.getItem('savedCertificates')) || {
   annisa: [],
   vika: [],
   zahra: [],
@@ -13,6 +14,11 @@ let currentActiveMemberKey = '';
 function openMemberModal(memberKey, name, role, imgSrc, desc) {
   currentActiveMemberKey = memberKey;
   
+  // Pastikan key anggota ada di dalam objek memberCertificates
+  if (!memberCertificates[currentActiveMemberKey]) {
+    memberCertificates[currentActiveMemberKey] = [];
+  }
+
   document.getElementById('modalTitle').textContent = name;
   document.getElementById('modalRole').textContent = role;
   document.getElementById('modalMemberImg').src = imgSrc;
@@ -35,10 +41,10 @@ function renderCertificates() {
   let html = '';
   certs.forEach((cert, index) => {
     html += `
-      <div class="cert-item-card">
-        <img src="${cert.image}" alt="Sertifikat" onerror="this.src='https://ui-avatars.com/api/?name=Cert&background=306998&color=fff'">
+      <div class="cert-item-card" style="display:flex; align-items:center; gap:12px; margin-bottom:10px; padding:8px; border:1px solid #e2e8f0; border-radius:8px;">
+        <img src="${cert.image}" alt="Sertifikat" style="width:60px; height:60px; object-fit:cover; border-radius:4px;" onerror="this.src='https://ui-avatars.com/api/?name=Cert&background=306998&color=fff'">
         <div class="cert-item-info">
-          <span>${cert.title}</span>
+          <strong style="display:block; color:#1e293b;">${cert.title}</strong>
           <small style="color: #64748b;">Sertifikat #${index + 1}</small>
         </div>
       </div>
@@ -78,14 +84,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (file && currentActiveMemberKey) {
         const reader = new FileReader();
         reader.onload = function(event) {
+          // Tambahkan sertifikat baru ke array anggota
           memberCertificates[currentActiveMemberKey].push({
             title: title,
             image: event.target.result
           });
           
+          // 2. SIMPAN KE LOCALSTORAGE (Penyimpanan Permanen Browser)
+          localStorage.setItem('savedCertificates', JSON.stringify(memberCertificates));
+          
           renderCertificates();
           certForm.reset();
-          alert('Sertifikat berhasil diunggah!');
+          alert('Sertifikat berhasil diunggah dan tersimpan!');
         };
         reader.readAsDataURL(file);
       }
