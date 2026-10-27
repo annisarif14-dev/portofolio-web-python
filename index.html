@@ -1,56 +1,688 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Kelompok Python</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPortofolio.py - Kelompok Python IT</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pyBlue: '#306998',
+                        pyYellow: '#FFD43B',
+                        pyDark: '#0f172a',
+                        pyCardDark: '#1e293b'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 10px rgba(48, 105, 152, 0.5)' },
+                            '100%': { boxShadow: '0 0 25px rgba(255, 212, 59, 0.8)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #306998;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD43B;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-pyYellow selection:text-slate-900 light:bg-slate-50 light:text-slate-800 transition-colors duration-300">
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">🐍 MyPortofolio<span>.py</span></div>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="portofolio.html">Portofolio</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+    <!-- CANVAS BACKGROUND ANIMATION -->
+    <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
-  <!-- HERO SECTION -->
-  <main class="main-container">
-    <section class="team-header-card" style="text-align: center; padding: 60px 20px;">
-      <div class="team-logo-wrapper" style="margin: 0 auto 20px auto;">
-        <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt="Python Logo">
-      </div>
-      <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Selamat Datang di Portofolio Kelompok Python</h1>
-      <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 25px auto; opacity: 0.95;">
-        Platform kolaborasi digital Mahasiswa Teknologi Informasi. 
-      </p>
-      <div>
-        <a href="portofolio.html" style="background: #ffffff; color: #306998; padding: 12px 25px; border-radius: 30px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block;">
-          <i class="fas fa-id-card"></i> Lihat Portofolio Anggota
-        </a>
-      </div>
-    </section>
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 px-4 lg:px-12 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pyBlue to-blue-600 flex items-center justify-center text-pyYellow font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-python text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-lg tracking-tight bg-gradient-to-r from-blue-400 via-sky-300 to-amber-300 bg-clip-text text-transparent">MyPortofolio<span class="text-pyYellow">.py</span></span>
+                    <span class="block text-[10px] text-slate-400 tracking-widest font-mono uppercase">Python Dev Group</span>
+                </div>
+            </a>
 
-    <!-- ABOUT SECTION -->
-    <div style="background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-top: 30px;">
-      <h2 style="color: #1e293b; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Tentang Tim Kami</h2>
-      <p style="color: #64748b; line-height: 1.8; margin-bottom: 15px;">
-        Kelompok kami terdiri dari 7 anggota yang memiliki minat dan impian di bidang Teknologi Informasi.
-      </p>
-      <p style="color: #64748b; line-height: 1.8;">
-        Melalui situs web ini, kami mendokumentasikan berbagai proyek, tugas, serta sertifikasi keahlian yang telah dicapai selama masa studi.
-      </p>
-    </div>
-  </main>
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-300 light:text-slate-600">
+                <a href="#home" class="hover:text-pyYellow transition-colors flex items-center gap-2"><i class="fas fa-home text-xs text-pyBlue"></i> Home</a>
+                <a href="#about" class="hover:text-pyYellow transition-colors flex items-center gap-2"><i class="fas fa-info-circle text-xs text-pyBlue"></i> Tentang</a>
+                <a href="#team" class="hover:text-pyYellow transition-colors flex items-center gap-2"><i class="fas fa-users text-xs text-pyBlue"></i> Tim Kami</a>
+                <a href="#playground" class="hover:text-pyYellow transition-colors flex items-center gap-2"><i class="fas fa-terminal text-xs text-pyYellow"></i> Terminal Simulator</a>
+            </div>
 
-  <footer>
-    <p>&copy; 2026 MyPortofolio Python. All Rights Reserved.</p>
-  </footer>
+            <!-- Action Controls -->
+            <div class="flex items-center gap-3">
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-800/80 text-amber-400 hover:bg-slate-700 transition-all border border-slate-700 light:bg-slate-200 light:text-slate-700 light:border-slate-300" title="Ubah Tema">
+                    <i class="fas fa-moon text-sm" id="themeIcon"></i>
+                </button>
+                <a href="portofolio.html" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-pyBlue to-blue-600 hover:from-blue-600 hover:to-pyBlue text-white font-semibold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 hover:scale-[1.02] active:scale-95 transition-all">
+                    <span>Lihat Portofolio</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
 
+    <main class="relative z-10 flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 space-y-24 py-10">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="pt-6 pb-10 flex flex-col lg:flex-row items-center gap-12 justify-between">
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>Kelompok Python &bull; Politeknik Negeri Madiun</span>
+                </div>
+
+                <!-- Animated Heading -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                    Inovasi Digital Berbasis <br class="hidden sm:block">
+                    <span class="bg-gradient-to-r from-pyBlue via-sky-400 to-pyYellow bg-clip-text text-transparent">
+                        Kode & Kreativitas
+                    </span>
+                </h1>
+
+                <!-- Dynamic Typing Effect Subtitle -->
+                <div class="h-12 text-slate-400 text-lg sm:text-xl font-mono code-font flex items-center justify-center lg:justify-start gap-2">
+                    <span class="text-pyYellow">&gt;</span>
+                    <span id="typingText" class="text-slate-200 font-semibold"></span>
+                    <span class="w-2 h-6 bg-pyYellow animate-pulse"></span>
+                </div>
+
+                <p class="text-slate-400 text-base max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                    Wadah kolaborasi digital 7 mahasiswa Teknologi Informasi dalam mengeksplorasi Pemrograman Python, Pengembangan Web, Keamanan Siber, hingga Kecerdasan Buatan.
+                </p>
+
+                <!-- Hero Buttons -->
+                <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                    <a href="portofolio.html" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-pyBlue via-blue-600 to-sky-600 text-white font-bold text-sm shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2">
+                        <i class="fas fa-id-card"></i>
+                        <span>Portofolio Anggota</span>
+                    </a>
+                    <a href="#playground" class="px-6 py-3.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-bold text-sm border border-slate-700 hover:border-slate-500 transition-all flex items-center gap-2 glass-panel">
+                        <i class="fas fa-terminal text-pyYellow"></i>
+                        <span>Coba Terminal Python</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Floating Visual Widget -->
+            <div class="flex-1 w-full max-w-lg relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-pyBlue to-pyYellow rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+                <div class="relative glass-panel rounded-2xl p-6 border border-slate-700/80 shadow-2xl bg-slate-900/90 text-slate-200">
+                    <!-- Window Header -->
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400"><i class="fab fa-python text-pyYellow mr-1"></i> main_team.py</span>
+                        <div class="text-xs text-slate-500"><i class="fas fa-lock"></i> SSL</div>
+                    </div>
+                    <!-- Mini Code Preview -->
+                    <pre class="code-font text-xs sm:text-sm text-slate-300 leading-relaxed overflow-x-auto">
+<span class="text-purple-400">class</span> <span class="text-amber-300">PythonTeam</span>:
+    <span class="text-purple-400">def</span> <span class="text-blue-400">__init__</span>(<span class="text-sky-300">self</span>):
+        <span class="text-sky-300">self</span>.members = <span class="text-emerald-300">7</span>
+        <span class="text-sky-300">self</span>.institution = <span class="text-emerald-400">"Politeknik Negeri Madiun"</span>
+        <span class="text-sky-300">self</span>.skills = [<span class="text-emerald-400">"Python"</span>, <span class="text-emerald-400">"Web"</span>, <span class="text-emerald-400">"CyberSec"</span>]
+
+    <span class="text-purple-400">def</span> <span class="text-blue-400">get_status</span>(<span class="text-sky-300">self</span>):
+        <span class="text-purple-400">return</span> <span class="text-emerald-400">"Ready for Innovation! 🚀"</span>
+
+team = PythonTeam()
+<span class="text-blue-400">print</span>(team.get_status())</pre>
+                    <!-- Floating Badge Inside Hero Card -->
+                    <div class="mt-4 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                        <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-400"></i> Code Status: Passed</span>
+                        <span class="text-pyYellow font-mono">Python 3.12 LTS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE STATS COUNTER -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800 hover:border-pyBlue/50 transition-all hover:-translate-y-1 group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white counter" data-target="7">0</div>
+                <div class="text-xs text-slate-400 font-medium mt-1">Anggota Tim Aktif</div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800 hover:border-amber-500/50 transition-all hover:-translate-y-1 group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white counter" data-target="42">0</div>
+                <div class="text-xs text-slate-400 font-medium mt-1">Total Sertifikat Kompetensi</div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800 hover:border-emerald-500/50 transition-all hover:-translate-y-1 group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white counter" data-target="100">0</div>
+                <div class="text-xs text-slate-400 font-medium mt-1">% Komitmen & Dedikasi</div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-500/50 transition-all hover:-translate-y-1 group">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="text-3xl font-extrabold text-white">2026</div>
+                <div class="text-xs text-slate-400 font-medium mt-1">Angkatan Mahasiswa</div>
+            </div>
+        </section>
+
+        <!-- TECH STACK & SKILLS SHOWCASE -->
+        <section id="about" class="space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <h2 class="text-2xl sm:text-3xl font-bold">Teknologi & Keahlian Tim</h2>
+                <p class="text-slate-400 text-sm">Berbagai alat dan bahasa pemrograman yang kami pelajari dalam proyek pengembangan IT.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                <!-- Tech Badge Item -->
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-pyBlue flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fab fa-python text-2xl text-pyYellow"></i>
+                    <span class="font-bold text-sm">Python</span>
+                </div>
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-orange-500 flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fab fa-html5 text-2xl text-orange-500"></i>
+                    <span class="font-bold text-sm">HTML</span>
+                </div>
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-blue-400 flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fab fa-css3-alt text-2xl text-blue-400"></i>
+                    <span class="font-bold text-sm">CSS</span>
+                </div>
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-yellow-400 flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fab fa-js text-2xl text-yellow-400"></i>
+                    <span class="font-bold text-sm">JavaScript</span>
+                </div>
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-sky-500 flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fas fa-database text-2xl text-sky-400"></i>
+                    <span class="font-bold text-sm">MySQL / SQL</span>
+                </div>
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-purple-500 flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fab fa-figma text-2xl text-purple-400"></i>
+                    <span class="font-bold text-sm">Figma UI/UX</span>
+                </div>
+                <div class="glass-panel px-5 py-3 rounded-xl border border-slate-800 hover:border-emerald-500 flex items-center gap-3 hover:scale-105 transition-all cursor-pointer shadow-md">
+                    <i class="fas fa-shield-alt text-2xl text-emerald-400"></i>
+                    <span class="font-bold text-sm">Cybersecurity</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE TEAM PREVIEW SHOWCASE -->
+        <section id="team" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="text-pyYellow text-xs font-mono uppercase tracking-widest">&bull; Structural Roster</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold mt-1">Anggota Kelompok</h2>
+                </div>
+                <a href="portofolio.html" class="text-sm font-semibold text-pyBlue hover:text-sky-300 flex items-center gap-1.5 transition-colors">
+                    Lihat Sertifikat Lengkap Setiap Anggota <i class="fas fa-chevron-right text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Member Card 1 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Annisa.jpeg" alt="Annisa" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Annisa+Rifa&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Annisa Rifa Aulia</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 font-semibold mt-1">Project Manager</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Mengkoordinasikan pengembangan perangkat lunak dan arsitektur sistem berbasis Python.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">PM & Arch</span>
+                    </div>
+                </div>
+
+                <!-- Member Card 2 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Vika.png" alt="Vika" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Vika+Aditya&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Vika Aditya S.</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold mt-1">Frontend Dev</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Mengembangkan antarmuka pengguna web responsif, modern, dan integrasi API.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">Frontend</span>
+                    </div>
+                </div>
+
+                <!-- Member Card 3 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Zahra.jpeg" alt="Zahra" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Zahra+Artika&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Az-Zahra Artika P.</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-400 font-semibold mt-1">UI/UX Designer</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Mendesain wireframe, rancangan pengalaman pengguna, dan aset visual aplikasi.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">Design</span>
+                    </div>
+                </div>
+
+                <!-- Member Card 4 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Anik.png" alt="Anik" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Anik+Isnaeni&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Anik Isnaeni</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-400 font-semibold mt-1">Backend Dev</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Membangun logika server, manajemen basis data, dan keamanan jaringan.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">Backend</span>
+                    </div>
+                </div>
+
+                <!-- Member Card 5 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Syauqi.png" alt="Syauqi" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Syauqi+Nurrochman&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Syauqi Nurrochman</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 font-semibold mt-1">Python Developer</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Fokus pada pengolahan algoritma Python, IoT, dan otomasi pemrograman web.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">Python</span>
+                    </div>
+                </div>
+
+                <!-- Member Card 6 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Syahan.png" alt="Syahan" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Syahan+Bakti&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Syahan Bakti R.</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 font-semibold mt-1">Data Analyst</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Menganalisis dataset, visualisasi data, dan pemodelan Machine Learning.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">Data & ML</span>
+                    </div>
+                </div>
+
+                <!-- Member Card 7 -->
+                <div class="glass-panel rounded-2xl p-5 border border-slate-800 hover:border-pyBlue transition-all hover:-translate-y-1.5 group flex flex-col justify-between lg:col-span-2">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <img src="img/Radhia.jpeg" alt="Radhia" class="w-14 h-14 rounded-xl object-cover ring-2 ring-pyBlue/50" onerror="this.src='https://ui-avatars.com/api/?name=Radhia+Ayu&background=306998&color=fff'">
+                            <div>
+                                <h3 class="font-bold text-slate-100 group-hover:text-pyYellow transition-colors">Radhia Ayu</h3>
+                                <span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full bg-rose-500/10 text-rose-400 font-semibold mt-1">System Analyst</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Analisis kebutuhan sistem, evaluasi alur kerja aplikasi, dan dokumentasi teknis kelompok.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 mt-4 flex items-center justify-between text-xs text-slate-500">
+                        <span><i class="fas fa-certificate text-pyYellow"></i> 6 Sertifikat</span>
+                        <span class="font-mono text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">SysAnalyst</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE PYTHON TERMINAL SIMULATOR WIDGET -->
+        <section id="playground" class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-mono">
+                    <i class="fas fa-terminal"></i> Interactive Feature
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold">Python Interactive Simulator</h2>
+                <p class="text-slate-400 text-sm">Cobalah mengeksekusi perintah sederhana untuk berinteraksi dengan data kelompok kami!</p>
+            </div>
+
+            <div class="glass-panel rounded-2xl border border-slate-700/80 overflow-hidden shadow-2xl max-w-4xl mx-auto bg-slate-900/95">
+                <!-- Terminal Header Bar -->
+                <div class="bg-slate-800/90 px-4 py-3 flex items-center justify-between border-b border-slate-700">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span class="ml-2 text-xs font-mono text-slate-300">python3 terminal_interactive.py</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="clearTerminal()" class="text-xs text-slate-400 hover:text-white px-2 py-1 bg-slate-700 rounded transition"><i class="fas fa-trash"></i> Bersihkan</button>
+                    </div>
+                </div>
+
+                <!-- Quick Command Buttons -->
+                <div class="p-3 bg-slate-800/40 border-b border-slate-800 flex flex-wrap gap-2 text-xs">
+                    <span class="text-slate-400 flex items-center gap-1 font-mono">Pintas:</span>
+                    <button onclick="runCommand('team_info()')" class="px-2.5 py-1 rounded bg-pyBlue/30 hover:bg-pyBlue/60 text-sky-300 border border-sky-500/30 transition">team_info()</button>
+                    <button onclick="runCommand('list_members()')" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 border border-amber-500/30 transition">list_members()</button>
+                    <button onclick="runCommand('get_stats()')" class="px-2.5 py-1 rounded bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 border border-emerald-500/30 transition">get_stats()</button>
+                    <button onclick="runCommand('help()')" class="px-2.5 py-1 rounded bg-slate-700 hover:bg-slate-600 text-slate-300 transition">help()</button>
+                </div>
+
+                <!-- Terminal Output Display -->
+                <div id="terminalConsole" class="p-5 font-mono text-xs sm:text-sm min-h-[220px] max-h-[320px] overflow-y-auto space-y-2 text-slate-200 leading-relaxed">
+                    <p class="text-slate-500"># Selamat datang di Terminal Interaktif Kelompok Python!</p>
+                    <p class="text-slate-500"># Klik tombol pintas di atas atau ketik fungsi lalu tekan Enter.</p>
+                </div>
+
+                <!-- Terminal Input Form -->
+                <form onsubmit="handleTerminalSubmit(event)" class="flex items-center bg-slate-950 px-4 py-3 border-t border-slate-800">
+                    <span class="text-pyYellow font-mono font-bold mr-2">&gt;&gt;&gt;</span>
+                    <input type="text" id="terminalInput" placeholder="Ketik perintah (contoh: list_members() )..." class="w-full bg-transparent font-mono text-xs sm:text-sm text-slate-100 focus:outline-none placeholder-slate-600">
+                    <button type="submit" class="ml-2 px-3 py-1 bg-pyBlue hover:bg-blue-600 text-white rounded text-xs font-mono transition">Run</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 glass-panel border-t border-slate-800 mt-20 py-8 px-4 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fab fa-python text-pyYellow text-lg"></i>
+                <span class="font-bold text-slate-200">MyPortofolio.py &bull; Kelompok Python TI</span>
+            </div>
+            <p>&copy; 2026 Politeknik Negeri Madiun. Hak Cipta Dilindungi.</p>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="portofolio.html" class="hover:text-pyYellow transition">Halaman Portofolio</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // 1. TYPING ANIMATION IN HERO
+        const roles = ["Project Management", "Fullstack Development", "UI/UX Design", "Python Programming", "Cyber Security", "Data Analysis"];
+        let roleIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typingText');
+
+        function typeEffect() {
+            const currentRole = roles[roleIdx];
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let typingSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIdx === currentRole.length) {
+                typingSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                roleIdx = (roleIdx + 1) % roles.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', typeEffect);
+
+        // 2. COUNTER ANIMATION
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / 50;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 30);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+
+        // 3. DARK / LIGHT MODE TOGGLE
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('light');
+            document.documentElement.classList.toggle('dark');
+            
+            if (document.documentElement.classList.contains('light')) {
+                themeIcon.className = 'fas fa-sun text-amber-500';
+            } else {
+                themeIcon.className = 'fas fa-moon text-amber-400';
+            }
+        });
+
+        // 4. INTERACTIVE TERMINAL SIMULATOR LOGIC
+        const consoleEl = document.getElementById('terminalConsole');
+
+        function appendConsole(input, output, isError = false) {
+            const pInput = document.createElement('p');
+            pInput.className = 'text-pyYellow font-semibold';
+            pInput.innerHTML = `>>> ${input}`;
+            consoleEl.appendChild(pInput);
+
+            const pOutput = document.createElement('div');
+            pOutput.className = isError ? 'text-rose-400 pl-4 border-l-2 border-rose-500 my-1' : 'text-emerald-300 pl-4 border-l-2 border-emerald-500 my-1';
+            pOutput.innerHTML = output;
+            consoleEl.appendChild(pOutput);
+
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
+        function runCommand(cmd) {
+            const cleanedCmd = cmd.trim();
+            
+            switch(cleanedCmd) {
+                case 'team_info()':
+                    appendConsole(cleanedCmd, `
+                        <strong>Kelompok Python Development</strong><br>
+                        - Institusi: Politeknik Negeri Madiun (TI)<br>
+                        - Angkatan: 2026<br>
+                        - Fokus: Python, Web, IoT, Cybersecurity & Data Science
+                    `);
+                    break;
+                case 'list_members()':
+                    appendConsole(cleanedCmd, `
+                        1. Annisa Rifa Aulia - Project Manager<br>
+                        2. Vika Aditya Saputra - Frontend Developer<br>
+                        3. Az-Zahra Artika Putri - UI/UX Designer<br>
+                        4. Anik Isnaeni - Backend Developer<br>
+                        5. Syauqi Nurrochman P. - Python Developer<br>
+                        6. Syahan Bakti Ramadika - Data Analyst<br>
+                        7. Radhia Ayu - System Analyst
+                    `);
+                    break;
+                case 'get_stats()':
+                    appendConsole(cleanedCmd, `
+                        &bull; Total Anggota: 7 Orang<br>
+                        &bull; Total Sertifikat: 42 Sertifikat<br>
+                        &bull; Status Proyek: Active & Ready 🚀
+                    `);
+                    break;
+                case 'help()':
+                    appendConsole(cleanedCmd, `Perintah yang tersedia: <code>team_info()</code>, <code>list_members()</code>, <code>get_stats()</code>, <code>clear()</code>`);
+                    break;
+                case 'clear()':
+                    clearTerminal();
+                    break;
+                default:
+                    appendConsole(cleanedCmd, `NameError: name '${cleanedCmd}' is not defined. Ketik <strong>help()</strong> untuk daftar perintah.`, true);
+            }
+        }
+
+        function handleTerminalSubmit(e) {
+            e.preventDefault();
+            const inputEl = document.getElementById('terminalInput');
+            if(inputEl.value) {
+                runCommand(inputEl.value);
+                inputEl.value = '';
+            }
+        }
+
+        function clearTerminal() {
+            consoleEl.innerHTML = '<p class="text-slate-500"># Terminal dibersihkan.</p>';
+        }
+
+        // 5. BACKGROUND PARTICLE CANVAS
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.color = Math.random() > 0.5 ? 'rgba(48, 105, 152, ' : 'rgba(255, 212, 59, ';
+                this.alpha = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color + this.alpha + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.floor(window.innerWidth / 20);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
 </body>
 </html>

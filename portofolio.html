@@ -9,19 +9,19 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR NAVBAR DARK -->
   <nav class="navbar">
-    <div class="logo">🐍 MyPortofolio<span>.py</span></div>
+    <div class="logo"><i class="fab fa-python" style="color: #ffe873;"></i> MyPortofolio<span>.py</span></div>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="portofolio.html" class="active">Portofolio</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="portofolio.html" class="active"><i class="fas fa-layer-group"></i> Portofolio</a></li>
+      <li><a href="contact.html"><i class="fas fa-address-book"></i> Contact</a></li>
     </ul>
   </nav>
 
   <main class="main-container">
     
-    <!-- HEADER UTAMA KELOMPOK (Logo Python) -->
+    <!-- HEADER UTAMA KELOMPOK -->
     <section class="team-header-card">
       <div class="team-header-content">
         <div class="team-logo-wrapper">
@@ -30,10 +30,10 @@
         <div class="team-info">
           <h1>Kelompok Python Development</h1>
           <p class="team-school">📍 Politeknik Negeri Madiun | Teknologi Informasi</p>
-          <p class="team-desc">Tim IT yang berfokus pada Web Engineering, UI/UX Design, dan System Analysis.</p>
+          <p class="team-desc">Wadah kolaborasi digital 7 mahasiswa TI dalam mengeksplorasi Pemrograman Python, Pengembangan Web, Keamanan Siber, hingga Kecerdasan Buatan.</p>
           <div class="team-stats-badge">
-            <span><i class="fas fa-users"></i> 7 Anggota Tim</span>
-            <span><i class="fas fa-award"></i> 15+ Sertifikasi</span>
+            <span><i class="fas fa-users"></i> 7 Specialist Members</span>
+            <span><i class="fas fa-award"></i> 42+ Verified Certificates</span>
           </div>
         </div>
       </div>
@@ -41,14 +41,15 @@
 
     <!-- JUDUL SECTION -->
     <div class="section-title-wrapper">
-      <h2><i class="fas fa-id-card"></i> Daftar Portofolio Anggota Tim</h2>
+      <h2><i class="fas fa-id-card" style="color: #38bdf8;"></i> Portofolio & Sertifikasi Anggota</h2>
+      <p>Klik tombol pada kartu anggota untuk melihat profil lengkap serta 6 galeri sertifikat resmi.</p>
     </div>
 
-    <!-- GRID KARTU ANGGOTA (Portrait Style) -->
+    <!-- GRID KARTU ANGGOTA (Portrait Dark Glass) -->
     <div class="member-cards-grid">
       
       <!-- 1. Annisa Rifa Aulia -->
-      <div class="profile-card" onclick="openMemberModal('annisa', 'Annisa Rifa Aulia', 'Project Manager', 'img/Annisa.png', 'Mengkoordinasikan pengembangan perangkat lunak dan arsitektur sistem berbasis Python.')">
+      <div class="profile-card" onclick="openMemberModal('annisa', 'Annisa Rifa Aulia', 'Project Manager', 'img/Annisa.jpeg', 'Mengkoordinasikan pengembangan perangkat lunak dan arsitektur sistem berbasis Python.')">
         <div class="card-avatar-container">
           <img src="img/Annisa.jpeg" alt="Annisa" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Annisa+Rifa&background=306998&color=fff&size=400';">
           <span class="role-badge">Project Manager</span>
@@ -155,7 +156,7 @@
     </div>
   </main>
 
-  <!-- MODAL POPUP DETAIL & GALERI 6 SERTIFIKAT -->
+  <!-- MODAL POPUP POPUP DETAIL & GALERI 6 SERTIFIKAT -->
   <div id="certModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" id="closeModalBtn">&times;</span>
@@ -169,11 +170,11 @@
         </div>
       </div>
 
-      <hr style="margin: 15px 0; border: none; border-top: 1px solid #e2e8f0;">
+      <hr style="margin: 18px 0; border: none; border-top: 1px solid rgba(255,255,255,0.08);">
 
-      <h4 style="font-size: 1rem; color: #1e293b; margin-bottom: 5px;"><i class="fas fa-award"></i> Daftar 6 Sertifikat & Pencapaian</h4>
+      <h4 style="font-size: 1rem; color: #f8fafc; margin-bottom: 12px;"><i class="fas fa-award" style="color: #ffe873;"></i> Daftar 6 Sertifikat & Pencapaian</h4>
       
-      <!-- Wadah daftar 6 sertifikat manual yang dimuat oleh script.js -->
+      <!-- Wadah galeri 6 sertifikat manual -->
       <div class="cert-list" id="memberCertList"></div>
       
     </div>
