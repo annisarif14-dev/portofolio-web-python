@@ -1,21 +1,67 @@
-let memberCertificates = JSON.parse(localStorage.getItem('savedCertificates')) || {
-  annisa: [],
-  vika: [],
-  zahra: [],
-  anik: [],
-  syauqi: [],
-  syahan: [],
-  radhia: []
+// DATA 6 SERTIFIKAT MANUAL TIAP ANGGOTA
+const memberCertificates = {
+  annisa: [
+    { title: "Python Developer Certification", image: "img/sertif_annisa_1.png", issuer: "freeCodeCamp", date: "2026" },
+    { title: "Memulai Pemrograman dengan Java", image: "img/sertif_annisa_2.png", issuer: "Dicoding", date: "2026" },
+    { title: "Programming Concepts DTS", image: "img/sertif_annisa_3.png", issuer: "Komdigi", date: "2026" },
+    { title: "Software Architecture Basics", image: "img/sertif_annisa_4.png", issuer: "Internal", date: "2026" },
+    { title: "Project Management Essentials", image: "img/sertif_annisa_5.png", issuer: "Coursera", date: "2026" },
+    { title: "Web Development Masterclass", image: "img/sertif_annisa_6.png", issuer: "Udemy", date: "2026" }
+  ],
+  vika: [
+    { title: "Frontend Web Fundamentals", image: "img/sertif_vika_1.png", issuer: "Dicoding", date: "2026" },
+    { title: "Basic Python Programming", image: "img/sertif_vika_2.png", issuer: "Sololearn", date: "2026" },
+    { title: "Responsive Web Design", image: "img/sertif_vika_3.png", issuer: "freeCodeCamp", date: "2026" },
+    { title: "JavaScript Essentials", image: "img/sertif_vika_4.png", issuer: "Dicoding", date: "2026" },
+    { title: "UI Implementation for Web", image: "img/sertif_vika_5.png", issuer: "Udemy", date: "2026" },
+    { title: "Git & Version Control", image: "img/sertif_vika_6.png", issuer: "GitHub", date: "2026" }
+  ],
+  zahra: [
+    { title: "UI/UX Design Masterclass", image: "img/sertif_zahra_1.png", issuer: "Coursera", date: "2026" },
+    { title: "Figma UI Design Essentials", image: "img/sertif_zahra_2.png", issuer: "Udemy", date: "2026" },
+    { title: "User Research Methods", image: "img/sertif_zahra_3.png", issuer: "Google", date: "2026" },
+    { title: "Design Thinking Fundamentals", image: "img/sertif_zahra_4.png", issuer: "Interaction Design", date: "2026" },
+    { title: "Mobile App Wireframing", image: "img/sertif_zahra_5.png", issuer: "Coursera", date: "2026" },
+    { title: "Prototyping Advanced", image: "img/sertif_zahra_6.png", issuer: "Figma Academy", date: "2026" }
+  ],
+  anik: [
+    { title: "Backend Developer with Python", image: "img/sertif_anik_1.png", issuer: "Udemy", date: "2026" },
+    { title: "Database Management Systems", image: "img/sertif_anik_2.png", issuer: "Dicoding", date: "2026" },
+    { title: "RESTful API Design", image: "img/sertif_anik_3.png", issuer: "Coursera", date: "2026" },
+    { title: "SQL & MySQL Database", image: "img/sertif_anik_4.png", issuer: "Sololearn", date: "2026" },
+    { title: "Server Administration Linux", image: "img/sertif_anik_5.png", issuer: "DigitalOcean", date: "2026" },
+    { title: "Flask & FastAPI Framework", image: "img/sertif_anik_6.png", issuer: "Udemy", date: "2026" }
+  ],
+  syauqi: [
+    { title: "Python Algorithms & Data Structures", image: "img/sertif_syauqi_1.png", issuer: "HackerRank", date: "2026" },
+    { title: "Advanced Python Scripting", image: "img/sertif_syauqi_2.png", issuer: "Coursera", date: "2026" },
+    { title: "Problem Solving (Intermediate)", image: "img/sertif_syauqi_3.png", issuer: "HackerRank", date: "2026" },
+    { title: "Object-Oriented Programming Python", image: "img/sertif_syauqi_4.png", issuer: "Dicoding", date: "2026" },
+    { title: "Automation Scripting Basics", image: "img/sertif_syauqi_5.png", issuer: "Udemy", date: "2026" },
+    { title: "Clean Code & Refactoring", image: "img/sertif_syauqi_6.png", issuer: "Coursera", date: "2026" }
+  ],
+  syahan: [
+    { title: "Data Analyst Professional Certificate", image: "img/sertif_syahan_1.png", issuer: "Google", date: "2026" },
+    { title: "Python for Data Science", image: "img/sertif_syahan_2.png", issuer: "Kaggle", date: "2026" },
+    { title: "Data Visualization with Pandas & Matplotlib", image: "img/sertif_syahan_3.png", issuer: "Coursera", date: "2026" },
+    { title: "SQL for Data Analysis", image: "img/sertif_syahan_4.png", issuer: "DataCamp", date: "2026" },
+    { title: "Statistical Thinking for Data Science", image: "img/sertif_syahan_5.png", issuer: "Udemy", date: "2026" },
+    { title: "Business Intelligence Fundamentals", image: "img/sertif_syahan_6.png", issuer: "Google", date: "2026" }
+  ],
+  radhia: [
+    { title: "Software Testing & QA Fundamentals", image: "img/sertif_radhia_1.png", issuer: "Udemy", date: "2026" },
+    { title: "System Analyst Foundations", image: "img/sertif_radhia_2.png", issuer: "Coursera", date: "2026" },
+    { title: "UML & System Modeling", image: "img/sertif_radhia_3.png", issuer: "Dicoding", date: "2026" },
+    { title: "Manual & Automated Testing", image: "img/sertif_radhia_4.png", issuer: "Coursera", date: "2026" },
+    { title: "Requirements Analysis", image: "img/sertif_radhia_5.png", issuer: "Udemy", date: "2026" },
+    { title: "Agile Project Management", image: "img/sertif_radhia_6.png", issuer: "Scrum.org", date: "2026" }
+  ]
 };
 
 let currentActiveMemberKey = '';
 
 function openMemberModal(memberKey, name, role, imgSrc, desc) {
   currentActiveMemberKey = memberKey;
-  
-  if (!memberCertificates[currentActiveMemberKey]) {
-    memberCertificates[currentActiveMemberKey] = [];
-  }
 
   document.getElementById('modalTitle').textContent = name;
   document.getElementById('modalRole').textContent = role;
@@ -27,88 +73,66 @@ function openMemberModal(memberKey, name, role, imgSrc, desc) {
   document.getElementById('certModal').style.display = 'block';
 }
 
-// 1. RENDER LIST SERTIFIKAT (Ditambah Tombol Lihat, Edit, Hapus)
+// RENDER 6 SERTIFIKAT DALAM BENTUK GRID GALERI
 function renderCertificates() {
   const certListContainer = document.getElementById('memberCertList');
   const certs = memberCertificates[currentActiveMemberKey] || [];
   
   if (certs.length === 0) {
-    certListContainer.innerHTML = `<p class="no-cert-text">Belum ada sertifikat yang diunggah untuk anggota ini.</p>`;
+    certListContainer.innerHTML = `<p class="no-cert-text">Belum ada sertifikat yang ditampilkan untuk anggota ini.</p>`;
     return;
   }
   
-  let html = '';
-  certs.forEach((cert, index) => {
+  let html = '<div class="cert-grid-gallery">';
+  certs.forEach((cert) => {
     html += `
-      <div class="cert-item-card" style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; padding:10px; border:1px solid #e2e8f0; border-radius:8px; background:#f8fafc;">
-        <div style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="viewCertificate(${index})" title="Klik untuk lihat gambar penuh">
-          <img src="${cert.image}" alt="Sertifikat" style="width:60px; height:60px; object-fit:cover; border-radius:6px;" onerror="this.src='https://ui-avatars.com/api/?name=Cert&background=306998&color=fff'">
-          <div class="cert-item-info">
-            <strong style="display:block; color:#1e293b; font-size:15px;">${cert.title}</strong>
-            <small style="color: #64748b;">Sertifikat #${index + 1} • <span style="color:#0284c7; text-decoration:underline;">Lihat Gambar</span></small>
+      <div class="cert-card-item" onclick="viewCertificate('${cert.image}', '${cert.title}')">
+        <div class="cert-thumb-wrapper">
+          <img src="${cert.image}" alt="${cert.title}" onerror="this.src='https://ui-avatars.com/api/?name=Certificate&background=306998&color=fff&size=300'">
+          <div class="cert-overlay-zoom">
+            <i class="fas fa-search-plus"></i>
           </div>
         </div>
-        
-        <!-- Tombol Aksi Edit & Hapus -->
-        <div class="cert-item-actions" style="display:flex; gap:6px;">
-          <button onclick="editCertificate(${index})" style="background:#f59e0b; color:white; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:12px;">Edit</button>
-          <button onclick="deleteCertificate(${index})" style="background:#ef4444; color:white; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:12px;">Hapus</button>
+        <div class="cert-card-details">
+          <h4>${cert.title}</h4>
+          <p><i class="fas fa-building"></i> ${cert.issuer} &bull; <i class="far fa-calendar-alt"></i> ${cert.date}</p>
         </div>
       </div>
     `;
   });
+  html += '</div>';
   
   certListContainer.innerHTML = html;
 }
 
-// 2. FITUR LIHAT / PREVIEW SERTIFIKAT GAMBAR PENUH
-function viewCertificate(index) {
-  const cert = memberCertificates[currentActiveMemberKey][index];
-  if (cert) {
-    const newWindow = window.open("");
-    newWindow.document.write(`
-      <html>
-        <head><title>Preview - ${cert.title}</title></head>
-        <body style="margin:0; background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:100vh; font-family:sans-serif; color:white;">
-          <h2 style="margin-bottom:15px;">${cert.title}</h2>
-          <img src="${cert.image}" style="max-width:90%; max-height:80vh; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.5);">
-        </body>
-      </html>
-    `);
-  }
-}
-
-// 3. FITUR EDIT JUDUL SERTIFIKAT
-function editCertificate(index) {
-  const currentTitle = memberCertificates[currentActiveMemberKey][index].title;
-  const newTitle = prompt('Masukkan judul sertifikat baru:', currentTitle);
+// FITUR PREVIEW GAMBAR FULLSCREEN (LIGHTBOX)
+function viewCertificate(imgSrc, title) {
+  const lightbox = document.createElement('div');
+  lightbox.className = 'cert-lightbox-overlay';
+  lightbox.innerHTML = `
+    <div class="cert-lightbox-container">
+      <span class="cert-lightbox-close">&times;</span>
+      <h3>${title}</h3>
+      <img src="${imgSrc}" alt="${title}" onerror="this.src='https://ui-avatars.com/api/?name=Certificate&background=306998&color=fff'">
+    </div>
+  `;
   
-  if (newTitle !== null && newTitle.trim() !== '') {
-    memberCertificates[currentActiveMemberKey][index].title = newTitle.trim();
-    saveAndReload();
-  }
+  document.body.appendChild(lightbox);
+  
+  lightbox.querySelector('.cert-lightbox-close').addEventListener('click', () => {
+    lightbox.remove();
+  });
+  
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.remove();
+    }
+  });
 }
 
-// 4. FITUR HAPUS SERTIFIKAT
-function deleteCertificate(index) {
-  const confirmDelete = confirm('Apakah Anda yakin ingin menghapus sertifikat ini?');
-  if (confirmDelete) {
-    memberCertificates[currentActiveMemberKey].splice(index, 1);
-    saveAndReload();
-  }
-}
-
-// FUNGSI SIMPAN KE LOCALSTORAGE & RENDER REFRESH
-function saveAndReload() {
-  localStorage.setItem('savedCertificates', JSON.stringify(memberCertificates));
-  renderCertificates();
-}
-
-// EVENT LISTENER LOAD & SUBMIT FORM
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('certModal');
   const closeBtn = document.getElementById('closeModalBtn');
-  const certForm = document.getElementById('certForm');
 
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -121,31 +145,4 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
   });
-
-  if (certForm) {
-    certForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const titleInput = document.getElementById('certTitle');
-      const fileInput = document.getElementById('certFile');
-      
-      const title = titleInput.value.trim();
-      const file = fileInput.files[0];
-      
-      if (file && currentActiveMemberKey) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-          memberCertificates[currentActiveMemberKey].push({
-            title: title,
-            image: event.target.result
-          });
-          
-          saveAndReload();
-          certForm.reset();
-          alert('Sertifikat berhasil diunggah!');
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  }
 });
