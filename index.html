@@ -74,14 +74,34 @@
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-pyYellow selection:text-slate-900 light:bg-slate-50 light:text-slate-800 transition-colors duration-300">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-pyYellow selection:text-slate-900 light:bg-slate-50 light:text-slate-800 transition-colors duration-300 splash-active">
 
-    <!-- CANVAS BACKGROUND ANIMATION -->
+    <div id="intro-splash" class="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950 transition-opacity duration-700">
+        <div class="splash-content text-center p-6 max-w-sm w-full">
+            <div class="logo-3d-container relative w-32 h-32 mx-auto mb-6 cursor-pointer">
+                <div class="python-logo-3d w-full h-full text-7xl flex items-center justify-center filter drop-shadow-[0_0_20px_rgba(48,105,152,0.8)]">
+                    🐍
+                </div>
+                <div class="glow-effect absolute inset-0 rounded-full bg-gradient-to-tr from-pyBlue to-pyYellow opacity-30 blur-xl animate-pulse"></div>
+            </div>
+            <h1 class="splash-title text-2xl font-black text-white tracking-wider mb-1">
+                MyPortofolio<span class="text-pyYellow">.py</span>
+            </h1>
+            <p class="splash-subtitle text-xs text-sky-300 font-mono mb-6">
+                Initializing Environment...
+            </p>
+            <div class="loading-bar-container w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-2 border border-slate-700">
+                <div id="splashProgress" class="loading-progress h-full w-0 bg-gradient-to-r from-pyBlue via-sky-400 to-pyYellow transition-all duration-100 ease-out"></div>
+            </div>
+            <span id="splashPercentage" class="loading-percentage text-xs font-mono font-bold text-slate-400">0%</span>
+        </div>
+    </div>
+
     <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
 
     <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 px-4 lg:px-12 py-3.5 transition-all">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="max-w-7xl mx-auto flex justify-between items-center">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-pyBlue to-blue-600 flex items-center justify-center text-pyYellow font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
@@ -684,5 +704,6 @@ team = PythonTeam()
         }
         animateParticles();
     </script>
+    <script src="script.js"></script>
 </body>
 </html>

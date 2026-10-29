@@ -1,4 +1,6 @@
-// DATA 6 SERTIFIKAT MANUAL TIAP ANGGOTA
+// ==========================================
+// 1. DATA 6 SERTIFIKAT MANUAL TIAP ANGGOTA
+// ==========================================
 const memberCertificates = {
   annisa: [
     { title: "Dasar Manajemen Proyek", image: "img/Sertifikat Annisa/Dasar Manajemen Proyek.png", issuer: "Dicoding Indonesia", date: "08 September 2026" },
@@ -62,20 +64,18 @@ let currentActiveMemberKey = '';
 
 function openMemberModal(memberKey, name, role, imgSrc, desc) {
   currentActiveMemberKey = memberKey;
-
   document.getElementById('modalTitle').textContent = name;
   document.getElementById('modalRole').textContent = role;
   document.getElementById('modalMemberImg').src = imgSrc;
   document.getElementById('modalDesc').textContent = desc;
-  
   renderCertificates();
-  
   document.getElementById('certModal').style.display = 'block';
 }
 
 // RENDER 6 SERTIFIKAT DALAM BENTUK GRID GALERI
 function renderCertificates() {
   const certListContainer = document.getElementById('memberCertList');
+  if (!certListContainer) return;
   const certs = memberCertificates[currentActiveMemberKey] || [];
   
   if (certs.length === 0) {
@@ -85,7 +85,6 @@ function renderCertificates() {
   
   let html = '<div class="cert-grid-gallery">';
   certs.forEach((cert) => {
-    // Mengecek apakah data issuer dan date ada, jika tidak, tampilkan teks default yang aman
     const metaInfo = (cert.issuer && cert.date) 
       ? `<p><i class="fas fa-building"></i> ${cert.issuer} &bull; <i class="far fa-calendar-alt"></i> ${cert.date}</p>` 
       : `<p><i class="fas fa-award"></i> Sertifikat Kompetensi</p>`;
@@ -106,7 +105,6 @@ function renderCertificates() {
     `;
   });
   html += '</div>';
-  
   certListContainer.innerHTML = html;
 }
 
@@ -135,6 +133,9 @@ function viewCertificate(imgSrc, title) {
   });
 }
 
+// ==========================================
+// 2. ANIMASI LOADING 3D & PARALLAX SPLASH SCREEN
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('certModal');
   const closeBtn = document.getElementById('closeModalBtn');
@@ -150,4 +151,46 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.style.display = 'none';
     }
   });
+
+  // Logika Loading Bar & Persentase
+  document.body.classList.add('splash-active');
+  const splash = document.getElementById('intro-splash');
+  const progressBar = document.getElementById('splashProgress');
+  const percentageText = document.getElementById('splashPercentage');
+  const logoContainer = document.querySelector('.logo-3d-container');
+
+  let progress = 0;
+  const loadingInterval = setInterval(() => {
+    progress += Math.floor(Math.random() * 5) + 3; // Kecepatan naiknya angka
+    
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(loadingInterval);
+      
+      document.body.classList.remove('splash-active');
+      
+      // Efek memudar (fade out) setelah mencapai 100%
+      setTimeout(() => {
+        if (splash) {
+          splash.style.opacity = '0';
+          splash.style.pointerEvents = 'none';
+          document.body.classList.remove('splash-active');
+          setTimeout(() => splash.remove(), 700);
+        }
+      }, 400);
+    }
+    
+    if (progressBar) progressBar.style.width = progress + '%';
+    if (percentageText) percentageText.textContent = progress + '%';
+  }, 40);
+
+  // Efek Parallax Tilt Logo Mengikuti Kursor
+  if (logoContainer) {
+    window.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 30;
+      const y = (e.clientY / innerHeight - 0.5) * -30;
+      logoContainer.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+  }
 });

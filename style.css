@@ -596,3 +596,41 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 50px;
 }
+
+/* TAMBAHKAN CSS 3D SPLASH SCREEN DI BAGIAN PALING BAWAH */
+#intro-splash {
+  perspective: 1000px;
+}
+
+.logo-3d-container {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.python-logo-3d {
+  animation: float3D 3s ease-in-out infinite, rotate3D 8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes float3D {
+  0%, 100% {
+    transform: translateY(0) translateZ(20px) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-12px) translateZ(40px) rotateX(10deg);
+  }
+}
+
+@keyframes rotate3D {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+body.splash-active {
+  overflow: hidden !important;
+}
+
